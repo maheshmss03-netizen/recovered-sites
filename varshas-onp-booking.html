@@ -1,0 +1,298 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Varsha's ONP Booking</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700;800&family=Open+Sans:wght@400;600;700&family=Montserrat:wght@500;600;700&display=swap">
+<style>
+:root{
+  --paper:#fbfcf7;
+  --mist:#f2f6e8;
+  --card:#ffffff;
+  --ink:#272e20;
+  --ink-soft:#5c6650;
+  --line:#e3e9d5;
+  --sage:#abc77d;
+  --sage-tint:#eef4df;
+  --deep:#51682f;
+  --deep-ink:#2c3a1b;
+  --btn-bg:#3f5524;
+  --btn-fg:#ffffff;
+  --btn-hover:#4c6630;
+  --chip-on-fg:#222d12;
+  --card-hi:rgba(255,255,255,.65);
+  --shadow:0 2px 4px rgba(39,46,32,.04), 0 18px 44px rgba(81,104,47,.14);
+  --shadow-soft:0 1px 2px rgba(39,46,32,.04), 0 7px 18px rgba(81,104,47,.09);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--mist);
+  color:var(--ink);
+  font-family:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16.5px;
+  line-height:1.65;
+  min-height:100vh;
+  position:relative;
+}
+h1,h2,h3{font-family:"Raleway","Open Sans",sans-serif;line-height:1.16;text-wrap:balance;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(1.7rem,3.8vw,2.35rem);font-weight:800}
+h3{font-size:1.05rem;font-weight:700}
+.wrap{max-width:1040px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.eyebrow{
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:.74rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--deep);margin-bottom:14px;
+}
+.orbs{position:fixed;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+.orb.a{width:520px;height:520px;right:-160px;top:-180px;background:radial-gradient(circle, color-mix(in srgb,var(--sage) 50%, transparent), transparent 70%)}
+.orb.b{width:380px;height:380px;left:-160px;bottom:-180px;background:radial-gradient(circle, color-mix(in srgb,var(--sage) 32%, transparent), transparent 70%)}
+@media (prefers-reduced-motion:no-preference){
+  .orb.a{animation:drift 24s var(--ease) infinite alternate}
+  .orb.b{animation:drift 28s var(--ease) infinite alternate-reverse}
+  @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-34px,26px,0) scale(1.07)}}
+}
+header.site{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:68px}
+.logo{font-family:"Raleway",sans-serif;font-weight:800;font-size:1.15rem;color:var(--ink);text-decoration:none}
+.logo b{color:var(--deep)}
+header.site .phone{font-family:"Montserrat",sans-serif;font-size:.85rem;font-weight:600;color:var(--deep);text-decoration:none}
+a:focus-visible,button:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+.head-actions{display:flex;align-items:center;gap:12px}
+
+main{padding:60px 0 88px}
+.book-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+@media(max-width:900px){.book-grid{grid-template-columns:1fr}}
+.intro p{color:var(--ink-soft);max-width:30em}
+.facts{display:grid;gap:18px;margin-top:28px}
+.fact{display:flex;gap:14px;align-items:flex-start}
+.fact .ico{
+  flex:0 0 40px;width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--sage) 38%, var(--card));color:var(--deep);font-size:1rem;
+}
+.fact .ico svg{width:20px;height:20px;fill:currentColor}
+.fact b{font-family:"Raleway",sans-serif;display:block}
+.fact p{margin:2px 0 0;color:var(--ink-soft);font-size:.92rem}
+.trust{
+  margin-top:32px;padding:16px 20px;border-radius:15px;background:color-mix(in srgb,var(--sage) 24%, var(--card));
+  border:1px solid var(--line);font-family:"Montserrat",sans-serif;font-size:.82rem;font-weight:600;color:var(--deep-ink);
+  display:flex;flex-wrap:wrap;gap:6px 18px;
+}
+.form-card{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px;
+  box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow);
+}
+@media(max-width:560px){.form-card{padding:22px}}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-grid .full{grid-column:1 / -1}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
+.field > label{
+  display:block;font-family:"Montserrat",sans-serif;font-size:.76rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px;
+}
+.field > label em{font-style:normal;color:var(--deep)}
+.field input,.field select,.field textarea{
+  width:100%;border:1.5px solid var(--line);border-radius:13px;background:var(--paper);
+  color:var(--ink);font:inherit;font-size:1rem;padding:12px 14px;
+  transition:border-color .25s ease, box-shadow .35s var(--ease);
+}
+.field textarea{resize:vertical;min-height:96px}
+.field input::placeholder,.field textarea::placeholder{color:color-mix(in srgb,var(--ink-soft) 65%, transparent)}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:color-mix(in srgb,var(--deep) 45%, var(--line))}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--deep);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--sage) 35%, transparent);
+}
+.field input:user-invalid{border-color:#b0583a}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:13px;overflow:hidden;background:var(--paper)}
+.seg label{display:contents}
+.seg input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;margin:0;padding:0;border:0;clip-path:inset(50%)}
+.seg span{
+  flex:1;text-align:center;padding:11px 10px;cursor:pointer;font-family:"Montserrat",sans-serif;
+  font-size:.84rem;font-weight:600;color:var(--ink-soft);transition:background .3s ease,color .3s ease;
+}
+.seg label + label span{border-left:1.5px solid var(--line)}
+.seg input:checked + span{background:color-mix(in srgb,var(--sage) 45%, var(--card));color:var(--deep-ink)}
+.seg input:focus-visible + span{outline:3px solid var(--deep);outline-offset:-3px}
+.goal-chips{display:flex;flex-wrap:wrap;gap:9px}
+.goal-chips input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;margin:0;padding:0;border:0;clip-path:inset(50%)}
+.goal-chips span{
+  display:inline-block;padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);
+  font-family:"Montserrat",sans-serif;font-size:.8rem;font-weight:600;color:var(--ink-soft);
+  cursor:pointer;transition:border-color .3s ease,background .3s ease,color .3s ease,transform .3s var(--ease);
+}
+.goal-chips span:hover{border-color:var(--deep);transform:translateY(-1px)}
+.goal-chips input:checked + span{background:var(--sage);border-color:var(--sage);color:var(--chip-on-fg)}
+.goal-chips input:focus-visible + span{outline:3px solid var(--deep);outline-offset:2px}
+.form-foot{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:26px}
+.form-foot .note{font-size:.8rem;color:var(--ink-soft);max-width:26em}
+.btn{
+  display:inline-block;white-space:nowrap;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;border:none;cursor:pointer;
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:.93rem;
+  padding:15px 32px;border-radius:999px;box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 25%, transparent),var(--shadow-soft);
+  transition:transform .35s var(--ease),background .25s ease,box-shadow .35s var(--ease);
+}
+.btn:hover{background:var(--btn-hover);transform:translateY(-2px);box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 25%, transparent),var(--shadow)}
+.btn:active{transform:translateY(0) scale(.98)}
+.chat-cta{display:inline-flex;white-space:nowrap;align-items:center;gap:10px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-family:"Montserrat",sans-serif;font-weight:600;padding:13px 26px;border-radius:999px;box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 25%, transparent),var(--shadow-soft);transition:transform .35s var(--ease),filter .25s ease}
+.chat-cta:hover{background:var(--btn-hover);transform:translateY(-2px)}
+.form-done{display:grid;place-items:center;text-align:center;gap:10px;padding:44px 10px}
+.form-done .mark{
+  width:64px;height:64px;border-radius:50%;background:var(--sage);color:var(--chip-on-fg);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;
+}
+.form-done p{color:var(--ink-soft);max-width:30em;margin:0}
+@media (prefers-reduced-motion:no-preference){
+  .form-done{animation:pop .5s var(--ease)}
+  @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+}
+footer.site{padding:28px 0 36px;font-size:.85rem;color:var(--ink-soft)}
+footer.site .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+footer.site a{color:var(--deep);text-decoration:none}
+.wa-float{
+  position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;
+  background:var(--btn-bg);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);text-decoration:none;
+  transition:transform .35s var(--ease);
+}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float svg{width:30px;height:30px;fill:var(--btn-fg)}
+</style>
+
+<div class="orbs" aria-hidden="true"><span class="orb a"></span><span class="orb b"></span></div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="logo" href="#">VARSHA'S <b>ONP</b></a>
+    <div class="head-actions">
+      <a class="phone" href="tel:+919840521650">+91 98405 21650</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="wrap book-grid">
+    <div class="intro">
+      <div class="eyebrow">Book Your Consultation</div>
+      <h1>Start With a Conversation, Not a Chart.</h1>
+      <p>Tell us a little about yourself and pick a time. Your first consultation is where we understand your health, food and routine, before anything is prescribed.</p>
+      <div class="facts">
+        <div class="fact"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div><b>In-clinic · Chennai</b><p>38/131, Sterling Road, 3rd Cross St, Nungambakkam. Or join online from anywhere.</p></div></div>
+        <div class="fact"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.2 14.2L11 13V7h1.5v5.25l4.5 2.67-.8 1.28z"/></svg></div><div><b>Mon-Sat, 9:00am to 5:00pm IST</b><p>We'll confirm your slot on WhatsApp within a few hours.</p></div></div>
+        <div class="fact"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div><div><b>Have blood reports?</b><p>Keep them handy. We review them during your consultation. No reports yet? We'll guide you on what to check.</p></div></div>
+      </div>
+      <div class="trust">
+        <span>4,000+ clients guided</span>
+        <span>10+ years of clinical practice</span>
+        <span>MSc Clinical Nutrition</span>
+      </div>
+    </div>
+
+    <div>
+      <form class="form-card" id="apptForm" novalidate>
+        <div class="form-grid">
+          <div class="field">
+            <label for="f-name">Full name <em>*</em></label>
+            <input id="f-name" name="name" type="text" placeholder="Your name" required autocomplete="name">
+          </div>
+          <div class="field">
+            <label for="f-phone">Phone / WhatsApp <em>*</em></label>
+            <input id="f-phone" name="phone" type="tel" placeholder="+91 98XXX XXXXX" required autocomplete="tel" inputmode="tel">
+          </div>
+          <div class="field full">
+            <label for="f-email">Email</label>
+            <input id="f-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+          </div>
+          <div class="field full">
+            <label id="goal-label">What brings you here? <em>*</em></label>
+            <div class="goal-chips" role="group" aria-labelledby="goal-label">
+              <label><input type="radio" name="goal" value="Weight loss" required><span>Weight loss</span></label>
+              <label><input type="radio" name="goal" value="PCOS / hormonal"><span>PCOS / hormonal</span></label>
+              <label><input type="radio" name="goal" value="Thyroid"><span>Thyroid</span></label>
+              <label><input type="radio" name="goal" value="Diabetes / blood sugar"><span>Diabetes / blood sugar</span></label>
+              <label><input type="radio" name="goal" value="Gut health"><span>Gut health</span></label>
+              <label><input type="radio" name="goal" value="Chronic condition"><span>Chronic condition</span></label>
+              <label><input type="radio" name="goal" value="Health reports"><span>Health reports</span></label>
+              <label><input type="radio" name="goal" value="Consistency"><span>Consistency</span></label>
+            </div>
+          </div>
+          <div class="field full">
+            <label id="mode-label">Consultation mode</label>
+            <div class="seg" role="group" aria-labelledby="mode-label">
+              <label><input type="radio" name="mode" value="In-clinic" checked><span>In-clinic · Chennai</span></label>
+              <label><input type="radio" name="mode" value="Online"><span>Online · Video call</span></label>
+            </div>
+          </div>
+          <div class="field">
+            <label for="f-date">Preferred date</label>
+            <input id="f-date" name="date" type="date">
+          </div>
+          <div class="field">
+            <label for="f-time">Preferred time</label>
+            <select id="f-time" name="time">
+              <option value="">Any time</option>
+              <option>Morning, 9am to 12pm</option>
+              <option>Afternoon, 12pm to 3pm</option>
+              <option>Evening, 3pm to 5pm</option>
+            </select>
+          </div>
+          <div class="field full">
+            <label for="f-notes">Anything we should know?</label>
+            <textarea id="f-notes" name="notes" placeholder="Your routine, recent reports, what you've already tried…"></textarea>
+          </div>
+        </div>
+        <div class="form-foot">
+          <button class="btn" type="submit">Book My Consultation →</button>
+          <p class="note">We'll only use your details to confirm this appointment. No spam, no pushy follow-ups.</p>
+        </div>
+      </form>
+      <div class="form-card form-done" id="apptDone" hidden role="status" aria-live="polite">
+        <div class="mark">✓</div>
+        <h3>Request received</h3>
+        <p id="doneMsg">Thanks! Varsha's team will confirm your slot on WhatsApp within a few hours, Mon-Sat 9am-5pm IST.</p>
+        <a class="chat-cta" href="https://wa.me/919840521650" target="_blank" rel="noopener" style="margin-top:8px">Chat on WhatsApp</a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <span>© 2026 Varsha's ONP (OPC) Private Limited</span>
+    <span>38/131, Sterling Road, Nungambakkam, Chennai · <a href="tel:+919840521650">+91 98405 21650</a></span>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/919840521650" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 6.1 1.6h.1c6.6 0 12-5.4 12-12S22.6 3 16 3zm5.9 17c-.3.8-1.7 1.6-2.3 1.6-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.5-1.5-5.8-5-6-5.3-.2-.2-1.4-1.9-1.4-3.6s.9-2.6 1.2-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6.3.8 1 2.6 1.1 2.8.1.2.2.4 0 .7-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.3 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9.4.2.6.1.8-.1.2-.2 1-1.1 1.2-1.5.3-.4.5-.3.9-.2.4.1 2.1 1 2.5 1.2.4.2.6.3.7.5.1.1.1.8-.2 1.6z"/></svg>
+</a>
+
+<script>
+(function(){
+  var form = document.getElementById('apptForm');
+  var done = document.getElementById('apptDone');
+  if(!form || !done) return;
+  var dateInput = document.getElementById('f-date');
+  if(dateInput){ dateInput.min = new Date().toISOString().slice(0,10); }
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if(!form.reportValidity()) return;
+    var data = new FormData(form);
+    var name = (data.get('name')||'').toString().trim().split(/\s+/)[0];
+    var mode = data.get('mode');
+    var msg = document.getElementById('doneMsg');
+    if(msg) msg.textContent = 'Thanks' + (name ? ', ' + name : '') + '! We’ll confirm your ' +
+      (mode === 'Online' ? 'online consultation' : 'in-clinic consultation') +
+      ' on WhatsApp within a few hours, Mon-Sat 9am-5pm IST.';
+    form.hidden = true;
+    done.hidden = false;
+    done.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: no-preference)').matches ? 'smooth' : 'auto', block:'center'});
+  });
+})();
+</script>
+
+</body></html>

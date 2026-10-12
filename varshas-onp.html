@@ -1,0 +1,875 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1"><style>:root{color-scheme:light}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found]){display:none!important}</style></head><body>
+<title>Varsha's ONP</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Raleway:wght@500;700;800&family=Open+Sans:wght@400;600;700&family=Montserrat:wght@500;600;700&display=swap">
+<style>
+/* ---------- tokens ---------- */
+:root{
+  --paper:#fbfcf7;
+  --mist:#f2f6e8;
+  --card:#ffffff;
+  --ink:#272e20;
+  --ink-soft:#5c6650;
+  --line:#e3e9d5;
+  --sage:#abc77d;            /* primary */
+  --sage-tint:#eef4df;
+  --deep:#51682f;            /* readable accent on light */
+  --deep-ink:#2c3a1b;
+  --btn-bg:#3f5524;
+  --btn-fg:#ffffff;
+  --btn-hover:#4c6630;
+  --chip-on-fg:#222d12;
+  --card-hi:rgba(255,255,255,.65);
+  --shadow:0 2px 4px rgba(39,46,32,.04), 0 18px 44px rgba(81,104,47,.14);
+  --shadow-soft:0 1px 2px rgba(39,46,32,.04), 0 7px 18px rgba(81,104,47,.09);
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+
+/* ---------- base ---------- */
+*{box-sizing:border-box}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+[id]{scroll-margin-top:84px}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Open Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  font-size:16.5px;
+  line-height:1.65;
+}
+h1,h2,h3{font-family:"Raleway","Open Sans",sans-serif;line-height:1.16;text-wrap:balance;margin:0 0 .5em;letter-spacing:-.01em}
+h1{font-size:clamp(1.9rem,4vw,2.9rem);font-weight:800}
+h2{font-size:clamp(1.45rem,2.8vw,2.1rem);font-weight:800}
+h3{font-size:1.08rem;font-weight:700;letter-spacing:0}
+p{margin:.4em 0 1em}
+.wrap{max-width:1100px;margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:.74rem;
+  letter-spacing:.16em;text-transform:uppercase;color:var(--deep);margin-bottom:14px;
+}
+section{padding:88px 0;position:relative}
+.alt{background:var(--mist)}
+.center{text-align:center}
+.lede{max-width:44em;margin:0 auto 44px;color:var(--ink-soft)}
+
+/* ---------- buttons ---------- */
+.btn{
+  display:inline-block;white-space:nowrap;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;
+  font-family:"Montserrat",sans-serif;font-weight:600;font-size:.93rem;
+  padding:15px 32px;border-radius:999px;box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 25%, transparent),var(--shadow-soft);border:none;cursor:pointer;
+  transition:transform .35s var(--ease),background .25s ease,box-shadow .35s var(--ease);
+}
+.btn:hover{background:var(--btn-hover);transform:translateY(-2px);box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 25%, transparent),var(--shadow)}
+.btn:active{transform:translateY(0) scale(.98)}
+a:focus-visible,.btn:focus-visible,summary:focus-visible{outline:3px solid var(--deep);outline-offset:3px}
+.head-actions{display:flex;align-items:center;gap:12px}
+.hl{font-style:normal;background-image:linear-gradient(180deg, transparent 60%, color-mix(in srgb,var(--sage) 55%, transparent) 60%);border-radius:3px;padding:0 .06em}
+
+/* ---------- header ---------- */
+header.site{
+  position:sticky;top:0;z-index:40;
+  background:color-mix(in srgb, var(--paper) 86%, transparent);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid transparent;
+  transition:border-color .4s ease, box-shadow .4s ease;
+}
+header.site.scrolled{border-bottom-color:var(--line);box-shadow:0 4px 24px rgba(39,46,32,.06)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:68px;padding-top:0;padding-bottom:0}
+.logo{font-family:"Raleway",sans-serif;font-weight:800;font-size:1.15rem;color:var(--ink);text-decoration:none;letter-spacing:-.01em}
+.logo b{color:var(--deep)}
+nav.main{display:flex;gap:28px}
+nav.main a{
+  color:var(--ink-soft);text-decoration:none;font-family:"Montserrat",sans-serif;font-size:.84rem;font-weight:500;
+  padding-bottom:4px;
+  background:linear-gradient(var(--sage),var(--sage)) left bottom / 0% 2px no-repeat;
+  transition:color .25s ease,background-size .4s var(--ease);
+}
+nav.main a:hover{color:var(--deep);background-size:100% 2px}
+@media(max-width:760px){nav.main{display:none}}
+@media(max-width:420px){
+  header.site .wrap{padding:0 16px}
+  header.site .btn{padding:9px 14px;font-size:.74rem}
+  .head-actions{gap:8px}
+    .logo{font-size:1rem}
+}
+@media(max-width:350px){
+  header.site .btn{display:none}
+}
+
+/* ---------- decorative layer ---------- */
+.orbs{position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0}
+.orb{position:absolute;border-radius:50%;filter:blur(70px);opacity:.5}
+.orb.a{width:480px;height:480px;right:-120px;top:-140px;background:radial-gradient(circle, color-mix(in srgb,var(--sage) 55%, transparent), transparent 70%)}
+.orb.b{width:360px;height:360px;left:-140px;bottom:-160px;background:radial-gradient(circle, color-mix(in srgb,var(--sage) 35%, transparent), transparent 70%)}
+.rings{position:absolute;pointer-events:none;color:var(--sage);opacity:.35;z-index:0}
+@media(max-width:640px){.rings{display:none}}
+@media (prefers-reduced-motion:no-preference){
+  .orb.a{animation:drift 22s var(--ease) infinite alternate}
+  .orb.b{animation:drift 26s var(--ease) infinite alternate-reverse}
+  @keyframes drift{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(-36px,28px,0) scale(1.08)}}
+}
+section > .wrap{position:relative;z-index:1}
+
+/* ---------- hero ---------- */
+.hero{padding:76px 0 72px;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.15fr .85fr;gap:52px;align-items:center}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}}
+.hero p.sub{font-size:1.06rem;color:var(--ink-soft);max-width:32em}
+.checks{list-style:none;margin:24px 0 30px;padding:0;display:grid;gap:14px;max-width:36em}
+.checks li{padding-left:36px;position:relative;font-size:.97rem}
+.checks li::before{
+  content:"✓";position:absolute;left:0;top:1px;width:25px;height:25px;border-radius:50%;
+  background:var(--sage);color:var(--chip-on-fg);font-weight:700;font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;
+}
+.vsl{
+  aspect-ratio:16/10;border-radius:20px;position:relative;overflow:hidden;
+  background:
+    radial-gradient(90% 90% at 80% 15%, color-mix(in srgb,var(--sage) 50%, var(--card)), transparent 60%),
+    linear-gradient(150deg, color-mix(in srgb,var(--sage) 34%, var(--card)), color-mix(in srgb,var(--sage) 10%, var(--card)));
+  display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;
+  border:1px solid var(--line);box-shadow:var(--shadow);color:var(--deep-ink);
+}
+.vsl .play{
+  width:70px;height:70px;border-radius:50%;background:var(--card);display:flex;align-items:center;justify-content:center;
+  box-shadow:var(--shadow-soft);transition:transform .35s var(--ease);
+}
+.vsl:hover .play{transform:scale(1.07)}
+.vsl .play svg{margin-left:4px}
+.vsl span{font-family:"Montserrat",sans-serif;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase}
+.hero-visual{position:relative}
+.float-card{
+  position:absolute;display:flex;gap:11px;align-items:center;
+  background:color-mix(in srgb, var(--card) 90%, transparent);
+  backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border:1px solid var(--line);border-radius:15px;padding:12px 17px;
+  box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow);
+}
+.float-card b{font-family:"Raleway",sans-serif;font-size:.85rem;display:block;line-height:1.25}
+.float-card > div > span{display:block;font-size:.74rem;color:var(--ink-soft)}
+.fc-ico{
+  flex:0 0 30px;width:30px;height:30px;border-radius:50%;background:var(--sage);color:var(--chip-on-fg);
+  display:flex;align-items:center;justify-content:center;
+}
+.fc-ico svg{width:16px;height:16px;fill:currentColor}
+.fc-trend{width:58px;height:24px;color:var(--deep);flex:0 0 58px}
+.fc-a{top:-18px;right:-12px}
+.fc-b{bottom:-20px;left:-12px}
+@media(max-width:860px){.fc-a{right:4px;top:-14px}.fc-b{left:4px;bottom:-14px}}
+@media (prefers-reduced-motion:no-preference){
+  .fc-a{animation:floaty 7s ease-in-out infinite alternate}
+  .fc-b{animation:floaty 8.5s ease-in-out infinite alternate-reverse}
+  @keyframes floaty{from{transform:translateY(0)}to{transform:translateY(-9px)}}
+}
+
+/* ---------- proof strip ---------- */
+.proof{background:var(--deep-ink);padding:20px 0}
+.proof .wrap{
+  display:flex;flex-wrap:wrap;gap:12px 0;justify-content:center;
+  color:#eef4df;font-family:"Montserrat",sans-serif;font-weight:600;font-size:.88rem;
+}
+.proof span{padding:0 26px;border-left:1px solid rgba(238,244,223,.25)}
+.proof span:first-child{border-left:none}
+@media(max-width:700px){.proof span{border-left:none;width:100%;text-align:center;padding:2px 0}}
+
+/* ---------- cards ---------- */
+.grid{display:grid;gap:20px}
+.cards-4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:980px){.cards-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.cards-4{grid-template-columns:1fr}}
+.card{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;
+  box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow-soft);
+  transition:border-color .4s var(--ease),transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.card:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow);border-color:color-mix(in srgb,var(--sage) 55%, var(--line))}
+.card .tag{
+  font-family:"Montserrat",sans-serif;font-size:.7rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--deep);display:block;margin-bottom:10px;
+}
+.card h3{margin-bottom:.4em}
+.card p{color:var(--ink-soft);font-size:.94rem;margin:0}
+
+/* ---------- case studies ---------- */
+.case-split{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}
+@media(max-width:900px){.case-split{grid-template-columns:1fr;gap:36px}}
+.case-intro p{color:var(--ink-soft);max-width:28em}
+.case-intro .btn{margin-top:10px}
+.case{display:grid;grid-template-columns:1fr;gap:24px}
+.case .card{display:flex;flex-direction:column;padding:30px}
+.case-big{font-family:"Raleway",sans-serif;font-weight:600;font-size:28px;line-height:1.12;letter-spacing:-.01em;color:var(--deep)}
+.case-person{display:inline-flex;align-items:center;gap:8px;margin:12px 0 2px;font-family:"Raleway",sans-serif;font-weight:700;font-size:.95rem;color:var(--ink)}
+.case-person .u-ico{
+  flex:0 0 24px;width:24px;height:24px;border-radius:50%;
+  background:color-mix(in srgb,var(--sage) 22%, var(--card));
+  border:1px solid var(--line);color:var(--deep);
+  display:flex;align-items:center;justify-content:center;
+}
+.case-person .u-ico svg{width:13px;height:13px;fill:currentColor}
+.case-meta{display:block;color:var(--ink-soft);font-size:.92rem;margin:2px 0 16px}
+.case blockquote{margin:0 0 18px;font-style:italic;color:var(--ink);border-left:3px solid var(--sage);padding-left:14px}
+.case .changed{margin-top:auto;padding-top:14px;border-top:1px dashed var(--line);font-size:.92rem;color:var(--ink-soft)}
+.case .changed b{color:var(--deep)}
+
+/* ---------- comparison ---------- */
+.compare{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:var(--shadow)}
+@media(max-width:720px){.compare{grid-template-columns:1fr}}
+.compare .col{padding:32px}
+.compare .col.them{background:var(--mist)}
+.compare .col.us{background:color-mix(in srgb, var(--sage) 24%, var(--card))}
+.compare h3{font-size:1.2rem}
+.compare ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.compare li{padding-left:28px;position:relative;font-size:.94rem}
+.compare .them li{color:var(--ink-soft)}
+.compare .them li::before{content:"✕";position:absolute;left:0;color:var(--ink-soft);font-weight:700;opacity:.6}
+.compare .us li::before{content:"✓";position:absolute;left:0;color:var(--deep);font-weight:700}
+
+/* ---------- steps ---------- */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;counter-reset:step}
+@media(max-width:900px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:620px){.steps{grid-template-columns:1fr}}
+.step{
+  background:var(--card);border:1px solid var(--line);border-radius:18px;padding:26px;position:relative;
+  box-shadow:var(--shadow-soft);transition:transform .4s var(--ease),box-shadow .4s var(--ease);
+}
+.step:hover{transform:translateY(-4px);box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow);border-color:color-mix(in srgb,var(--sage) 55%, var(--line))}
+.step::before{
+  counter-increment:step;content:counter(step,decimal-leading-zero);
+  font-family:"Raleway",sans-serif;font-weight:800;font-size:1.9rem;color:var(--sage);
+  display:block;margin-bottom:8px;
+}
+.step p{color:var(--ink-soft);font-size:.93rem;margin:0}
+.step .so{display:block;margin-top:10px;color:var(--deep);font-weight:600;font-size:.9rem}
+
+/* ---------- meet ---------- */
+.meet{display:grid;grid-template-columns:.9fr 1.1fr;gap:52px;align-items:start}
+@media(max-width:860px){.meet{grid-template-columns:1fr}}
+.portrait{
+  aspect-ratio:4/5;border-radius:20px;border:1px solid var(--line);box-shadow:var(--shadow);
+  /* TODO: replace with real portrait photo of Varsha, approx 900x1125 */
+  background:
+    radial-gradient(90% 70% at 25% 15%, color-mix(in srgb,var(--sage) 48%, var(--card)), transparent 65%),
+    linear-gradient(165deg, color-mix(in srgb,var(--sage) 30%, var(--card)), color-mix(in srgb,var(--sage) 8%, var(--card)));
+  display:flex;align-items:flex-end;padding:24px;position:relative;overflow:hidden;
+}
+.portrait .plate{background:var(--card);border-radius:14px;padding:16px 20px;box-shadow:var(--shadow-soft);color:var(--ink)}
+.portrait .plate b{font-family:"Raleway",sans-serif}
+.portrait .plate span{display:block;font-size:.8rem;color:var(--ink-soft)}
+.creds{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:24px 0}
+@media(max-width:480px){.creds{grid-template-columns:1fr}}
+.cred{
+  display:flex;flex-direction:column;gap:8px;
+  background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px 22px;
+  box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow-soft);
+  transition:transform .4s var(--ease),border-color .4s var(--ease),box-shadow .4s var(--ease);
+}
+.cred:hover{transform:translateY(-4px);border-color:color-mix(in srgb,var(--sage) 55%,var(--line));box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow)}
+.cred-fig{
+  font-family:"Raleway",sans-serif;font-weight:800;font-size:2.3rem;line-height:1;
+  color:var(--deep);letter-spacing:-.02em;display:flex;align-items:center;min-height:38px;
+}
+.cred-fig .plus{color:var(--sage);font-size:1.5rem;line-height:1;margin-left:1px;align-self:flex-start}
+.cred-fig--text{font-size:1.7rem;letter-spacing:.02em}
+.cred-fig--icon{color:var(--sage)}
+.cred-body b{font-family:"Raleway",sans-serif;display:block;font-size:1rem}
+.cred-body p{margin:5px 0 0;color:var(--ink-soft);font-size:.9rem;line-height:1.5}
+
+/* ---------- testimonials: offset grid ---------- */
+.quotes{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+@media(max-width:980px){.quotes{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.quotes{grid-template-columns:1fr}}
+.quotes .card{justify-content:flex-start}
+.quotes .card p{font-style:italic;color:var(--ink)}
+.quotes .card .tag{color:var(--deep)}
+
+/* ---------- chat band ---------- */
+.chat-band{background:color-mix(in srgb, var(--sage) 22%, var(--paper))}
+.chat-band::after{
+  content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:radial-gradient(color-mix(in srgb,var(--deep) 18%, transparent) 1px, transparent 1.5px);
+  background-size:22px 22px;
+}
+.chat-band .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:44px;align-items:center}
+@media(max-width:820px){.chat-band .wrap{grid-template-columns:1fr}}
+.chat-mock{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow);display:grid;gap:12px;max-width:420px}
+.bubble{padding:12px 16px;border-radius:15px;font-size:.92rem;max-width:85%}
+.bubble.in{background:var(--mist);border-bottom-left-radius:5px;justify-self:start}
+.bubble.out{background:color-mix(in srgb,var(--sage) 42%, var(--card));border-bottom-right-radius:5px;justify-self:end;color:var(--ink)}
+.chat-cta{display:inline-flex;white-space:nowrap;align-items:center;gap:10px;background:var(--btn-bg);color:var(--btn-fg);text-decoration:none;font-family:"Montserrat",sans-serif;font-weight:600;padding:13px 26px;border-radius:999px;box-shadow:inset 0 1px 0 color-mix(in srgb,#fff 25%, transparent),var(--shadow-soft);transition:transform .35s var(--ease),filter .25s ease}
+.chat-cta:hover{background:var(--btn-hover);transform:translateY(-2px)}
+.chat-cta:active{transform:scale(.98)}
+.chat-channels{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{font-family:"Montserrat",sans-serif;font-size:.78rem;font-weight:600;border:1px solid var(--line);background:var(--card);border-radius:999px;padding:7px 14px;color:var(--ink-soft)}
+
+/* ---------- faq ---------- */
+.faq{display:grid;grid-template-columns:1fr 1fr;gap:0 56px;max-width:1040px;margin:0 auto;align-items:start}
+@media(max-width:760px){.faq{grid-template-columns:1fr;gap:0}}
+.faq-col{min-width:0}
+details{border-bottom:1px solid var(--line);padding:6px 0}
+summary{
+  cursor:pointer;font-family:"Raleway",sans-serif;font-weight:700;font-size:1.02rem;
+  padding:16px 0;list-style:none;display:flex;justify-content:space-between;gap:16px;align-items:center;
+}
+summary::-webkit-details-marker{display:none}
+summary::after{
+  content:"+";color:var(--deep);font-size:1.35rem;font-weight:400;line-height:1;
+  transition:transform .35s var(--ease);
+}
+details[open] summary::after{transform:rotate(45deg)}
+details p{color:var(--ink-soft);margin:0 0 18px;max-width:60ch}
+@media (prefers-reduced-motion:no-preference){
+  details[open] p{animation:faq-in .45s var(--ease)}
+  @keyframes faq-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+}
+
+/* ---------- booking ---------- */
+.book .wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+@media(max-width:900px){.book .wrap{grid-template-columns:1fr}}
+.book-info{display:grid;gap:18px}
+.fact{display:flex;gap:14px;align-items:flex-start}
+.fact .ico{
+  flex:0 0 40px;width:40px;height:40px;border-radius:13px;display:flex;align-items:center;justify-content:center;
+  background:color-mix(in srgb,var(--sage) 38%, var(--card));color:var(--deep);font-size:1rem;
+}
+.fact .ico svg{width:20px;height:20px;fill:currentColor}
+.fact b{font-family:"Raleway",sans-serif;display:block}
+.fact p{margin:2px 0 0;color:var(--ink-soft);font-size:.92rem}
+.form-card{
+  background:var(--card);border:1px solid var(--line);border-radius:22px;padding:34px;
+  box-shadow:inset 0 1px 0 var(--card-hi),var(--shadow);
+}
+@media(max-width:560px){.form-card{padding:22px}}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.form-grid .full{grid-column:1 / -1}
+@media(max-width:560px){.form-grid{grid-template-columns:1fr}}
+.field > label{
+  display:block;font-family:"Montserrat",sans-serif;font-size:.76rem;font-weight:600;
+  letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px;
+}
+.field > label em{font-style:normal;color:var(--deep)}
+.field input,.field select,.field textarea{
+  width:100%;border:1.5px solid var(--line);border-radius:13px;background:var(--paper);
+  color:var(--ink);font:inherit;font-size:1rem;padding:12px 14px;
+  transition:border-color .25s ease, box-shadow .35s var(--ease);
+}
+.field textarea{resize:vertical;min-height:96px}
+.field input::placeholder,.field textarea::placeholder{color:color-mix(in srgb,var(--ink-soft) 65%, transparent)}
+.field input:hover,.field select:hover,.field textarea:hover{border-color:color-mix(in srgb,var(--deep) 45%, var(--line))}
+.field input:focus,.field select:focus,.field textarea:focus{
+  outline:none;border-color:var(--deep);
+  box-shadow:0 0 0 4px color-mix(in srgb,var(--sage) 35%, transparent);
+}
+.field input:user-invalid{border-color:#b0583a}
+.seg{display:flex;border:1.5px solid var(--line);border-radius:13px;overflow:hidden;background:var(--paper)}
+.seg label{display:contents}
+.seg input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;margin:0;padding:0;border:0;clip-path:inset(50%)}
+.seg span{
+  flex:1;text-align:center;padding:11px 10px;cursor:pointer;font-family:"Montserrat",sans-serif;
+  font-size:.84rem;font-weight:600;color:var(--ink-soft);transition:background .3s ease,color .3s ease;
+}
+.seg label + label span{border-left:1.5px solid var(--line)}
+.seg input:checked + span{background:color-mix(in srgb,var(--sage) 45%, var(--card));color:var(--deep-ink)}
+.seg input:focus-visible + span{outline:3px solid var(--deep);outline-offset:-3px}
+.goal-chips{display:flex;flex-wrap:wrap;gap:9px}
+.goal-chips input{position:absolute;opacity:0;pointer-events:none;width:1px;height:1px;margin:0;padding:0;border:0;clip-path:inset(50%)}
+.goal-chips span{
+  display:inline-block;padding:8px 15px;border-radius:999px;border:1.5px solid var(--line);
+  font-family:"Montserrat",sans-serif;font-size:.8rem;font-weight:600;color:var(--ink-soft);
+  cursor:pointer;transition:border-color .3s ease,background .3s ease,color .3s ease,transform .3s var(--ease);
+}
+.goal-chips span:hover{border-color:var(--deep);transform:translateY(-1px)}
+.goal-chips input:checked + span{background:var(--sage);border-color:var(--sage);color:var(--chip-on-fg)}
+.goal-chips input:focus-visible + span{outline:3px solid var(--deep);outline-offset:2px}
+.form-foot{display:flex;flex-wrap:wrap;gap:16px;align-items:center;margin-top:26px}
+.form-foot .note{font-size:.8rem;color:var(--ink-soft);max-width:26em}
+.form-done{display:grid;place-items:center;text-align:center;gap:10px;padding:44px 10px}
+.form-done .mark{
+  width:64px;height:64px;border-radius:50%;background:var(--sage);color:var(--chip-on-fg);
+  display:flex;align-items:center;justify-content:center;font-size:1.6rem;font-weight:700;
+}
+.form-done p{color:var(--ink-soft);max-width:30em;margin:0}
+@media (prefers-reduced-motion:no-preference){
+  .form-done{animation:pop .5s var(--ease)}
+  @keyframes pop{from{opacity:0;transform:scale(.96)}to{opacity:1;transform:none}}
+}
+
+/* ---------- final cta ---------- */
+.final{background:var(--deep-ink);color:#eef4df;text-align:center;overflow:hidden}
+.final h2{color:#ffffff}
+.final p{color:#c9d6b4;max-width:40em;margin-left:auto;margin-right:auto}
+.final .pills{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin:22px 0 30px}
+.final .pills span{border:1px solid rgba(238,244,223,.3);border-radius:999px;padding:6px 16px;font-size:.85rem;font-family:"Montserrat",sans-serif}
+.final .btn{background:var(--sage);color:#1a2110}
+.final .btn:hover{background:#bcd492}
+.final small{display:block;margin-top:18px;color:#93a37c}
+
+/* ---------- footer ---------- */
+footer.site{background:var(--mist);border-top:1px solid var(--line);padding:52px 0 34px;font-size:.9rem;color:var(--ink-soft)}
+footer.site .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:32px}
+@media(max-width:720px){footer.site .cols{grid-template-columns:1fr}}
+footer.site h3{font-size:.95rem}
+footer.site a{color:var(--deep);text-decoration:none}
+footer.site .legal{margin-top:34px;padding-top:18px;border-top:1px solid var(--line);display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+
+/* ---------- whatsapp float ---------- */
+.wa-float{
+  position:fixed;right:22px;bottom:22px;z-index:60;width:58px;height:58px;border-radius:50%;
+  background:var(--btn-bg);display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 24px rgba(0,0,0,.25);text-decoration:none;
+  transition:transform .35s var(--ease);
+}
+.wa-float:hover{transform:scale(1.08)}
+.wa-float:active{transform:scale(.96)}
+.wa-float svg{width:30px;height:30px;fill:var(--btn-fg)}
+
+/* ---------- reveal ---------- */
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:var(--d,0ms)}
+  .reveal.on{opacity:1;transform:none}
+  /* hand transitions back to the component once revealed, so hover states stay snappy */
+  .card.reveal.on,.step.reveal.on{transition:border-color .4s var(--ease),transform .4s var(--ease),box-shadow .4s var(--ease);transition-delay:0ms}
+  .btn.reveal.on{transition:transform .35s var(--ease),background .25s ease,box-shadow .35s var(--ease);transition-delay:0ms}
+}
+</style>
+
+<header class="site" id="siteHeader">
+  <div class="wrap">
+    <a class="logo" href="#top">VARSHA'S <b>ONP</b></a>
+    <nav class="main">
+      <a href="#foryou">Is This For You?</a>
+      <a href="#results">Results</a>
+      <a href="#how">How It Works</a>
+      <a href="#varsha">Meet Varsha</a>
+      <a href="#chat">Chat</a>
+      <a href="#faq">FAQ</a>
+      <a href="#book">Book</a>
+    </nav>
+    <div class="head-actions">
+      <a class="btn" href="#book" style="padding:10px 22px;font-size:.84rem">Book My Consultation</a>
+    </div>
+  </div>
+</header>
+<span id="topSentinel" aria-hidden="true" style="display:block;height:1px;margin-top:-1px"></span>
+
+<section class="hero" id="top">
+  <div class="orbs" aria-hidden="true"><span class="orb a"></span><span class="orb b"></span></div>
+  <div class="wrap">
+    <div>
+      <div class="eyebrow reveal">Personalized Nutrition · Chennai &amp; Online</div>
+      <h1 class="reveal">4,000+ People Have Learned How to Eat for <em class="hl">Their Goals</em>, Without Giving Up the Food They Love</h1>
+      <p class="sub reveal">Weight loss, better health, a health concern or plain consistency: we build your nutrition around your real life, not a generic diet chart.</p>
+      <ul class="checks reveal">
+        <li><b>No more copy-paste diet charts.</b> Your nutrition is built around your health, lifestyle, food preferences and goals.</li>
+        <li><b>No separate diet food.</b> Your normal home food is adapted into meals that fit your routine.</li>
+        <li><b>No relying on willpower alone.</b> Your coach checks your meals, gives feedback and helps you get back on track.</li>
+      </ul>
+      <a class="btn reveal" href="#book">Book My Consultation →</a>
+    </div>
+    <div class="hero-visual reveal">
+      <div class="vsl" role="img" aria-label="Video placeholder: watch how ONP works">
+        <!-- TODO: replace with real VSL video embed / poster frame, 1600x1000 -->
+        <div class="play"><svg width="24" height="24" viewBox="0 0 24 24" fill="var(--deep)"><path d="M8 5v14l11-7z"/></svg></div>
+        <span>Watch: How ONP Works</span>
+      </div>
+      <div class="float-card fc-a" aria-hidden="true">
+        <span class="fc-ico"><svg width="16" height="16" viewBox="0 0 24 24"><path d="M9 16.17 4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/></svg></span>
+        <div><b>Meal reviewed</b><span>Coach feedback, same day</span></div>
+      </div>
+      <div class="float-card fc-b" aria-hidden="true">
+        <div><b>Reports improving</b><span>HbA1c, weight, energy</span></div>
+        <svg class="fc-trend" width="58" height="24" viewBox="0 0 64 26" aria-hidden="true">
+          <path d="M2 5 C 16 7, 24 14, 34 17 S 56 21, 62 22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="62" cy="22" r="3" fill="currentColor"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="proof">
+  <div class="wrap">
+    <span>4,000+ clients guided</span>
+    <span>10+ years of clinical practice</span>
+    <span>Coached an international MMA team</span>
+    <span>MSc Clinical Nutrition</span>
+  </div>
+</div>
+
+<section id="foryou">
+  <div class="wrap">
+    <div class="center">
+      <h2>You've Tried to Fix It. But You're Still Dealing With the Same Problem.</h2>
+    </div>
+    <div class="grid cards-4" style="margin-top:40px">
+      <div class="card reveal"><span class="tag">Weight Loss</span><h3>Why won't the weight come off?</h3><p>You've tried diets, eating less and starting again. You just want something that finally fits your life.</p></div>
+      <div class="card reveal"><span class="tag">PCOS / Hormonal Health</span><h3>Why does my body feel so unpredictable?</h3><p>Your periods, weight or energy keep changing, and you still don't know what works for you.</p></div>
+      <div class="card reveal"><span class="tag">Thyroid</span><h3>Why are my thyroid numbers still worrying me?</h3><p>You don't know what to change or what actually matters. You want nutrition that makes sense for your health and your life.</p></div>
+      <div class="card reveal"><span class="tag">Diabetes / Blood Sugar</span><h3>I'm doing what I'm told, but my numbers still worry me.</h3><p>You want a clear food plan you can actually follow.</p></div>
+      <div class="card reveal"><span class="tag">Gut / Digestive Health</span><h3>Can I eat this without regretting it later?</h3><p>Bloating, discomfort and unpredictable digestion make food, restaurants and travel stressful.</p></div>
+      <div class="card reveal"><span class="tag">Autoimmune / Chronic</span><h3>Why does my body keep fighting me?</h3><p>You want a plan built around your health, not another generic diet.</p></div>
+      <div class="card reveal"><span class="tag">Health Reports + Weight</span><h3>My reports aren't normal. What am I supposed to do?</h3><p>Generic advice doesn't tell you how to eat day to day. You want to know what makes sense for you.</p></div>
+      <div class="card reveal"><span class="tag">Busy Life / Consistency</span><h3>I know what to do. I just can't keep doing it.</h3><p>Work, travel, eating out and cravings keep throwing you off. You want a plan that works when real life happens.</p></div>
+    </div>
+    <div class="center" style="margin-top:40px">
+      <p class="lede">If you saw yourself in any of these, you don't need another generic diet.<br><b>You need to understand what works for you, with someone helping you make it work.</b></p>
+      <a class="btn" href="#book">Book My Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="results">
+  <div class="wrap case-split">
+    <div class="case-intro">
+      <h2>They Were Where You Are Now.</h2>
+      <p>Different problems. Different people. But each one started with a problem that had become part of everyday life.</p>
+      <p>Their problems were different. But they all stopped guessing and started with a plan built around them.</p>
+      <a class="btn" href="#book">Book My Consultation →</a>
+    </div>
+    <div class="case">
+      <div class="card reveal">
+        <span class="tag">Diabetes + Weight</span>
+        <span class="case-big">30 kg down</span>
+        <span class="case-person"><span class="u-ico"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9.1c2.97 0 6.1 1.46 6.1 2.1v1H5.9v-1c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg></span>Jayshree</span>
+        <span class="case-meta">In under a year. HbA1c notably decreased.</span>
+        <blockquote>"After struggling with countless diets, this is the first time I've found something I can stick to for life."</blockquote>
+        <div class="changed"><b>What changed:</b> healthy eating became enjoyable, sustainable and something she could actually stick with.</div>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Weight + Hashimoto's</span>
+        <span class="case-big">121 kg → 104 kg</span>
+        <span class="case-person"><span class="u-ico"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9.1c2.97 0 6.1 1.46 6.1 2.1v1H5.9v-1c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg></span>Subbulakshmi</span>
+        <span class="case-meta">In 7 months, with a plan built around her Hashimoto's.</span>
+        <blockquote>"I wanted to lose weight, but my bigger goal was managing my Hashimoto's."</blockquote>
+        <div class="changed"><b>What changed:</b> she wasn't just following a diet anymore. She had a way of eating she could carry into everyday life.</div>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Gut + Food Intolerances</span>
+        <span class="case-big">Calm digestion</span>
+        <span class="case-person"><span class="u-ico"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9.1c2.97 0 6.1 1.46 6.1 2.1v1H5.9v-1c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg></span>Praneetha</span>
+        <span class="case-meta">After years of bloating and unpredictable digestion.</span>
+        <blockquote>"Every meal felt like a battle with my digestive system."</blockquote>
+        <div class="changed"><b>What changed:</b> discomfort reduced, and she learned what she could eat even while travelling.</div>
+      </div>
+      <div class="card reveal">
+        <span class="tag">Weight + Consistency</span>
+        <span class="case-big">12 kg down</span>
+        <span class="case-person"><span class="u-ico"><svg width="14" height="14" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5.9c1.16 0 2.1.94 2.1 2.1s-.94 2.1-2.1 2.1S9.9 9.16 9.9 8s.94-2.1 2.1-2.1m0 9.1c2.97 0 6.1 1.46 6.1 2.1v1H5.9v-1c0-.64 3.13-2.1 6.1-2.1M12 4C9.79 4 8 5.79 8 8s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 9c-2.67 0-8 1.34-8 4v3h16v-3c0-2.66-5.33-4-8-4z"/></svg></span>Padma</span>
+        <span class="case-meta">In 4 months, after stress-eating had taken over.</span>
+        <blockquote>"I lacked consistency big time."</blockquote>
+        <div class="changed"><b>What changed:</b> the bigger win was finally becoming consistent with her health and nutrition.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="center">
+      <h2>It Was Never About Your Willpower.</h2>
+    </div>
+    <div class="compare" style="margin-top:40px">
+      <div class="col them">
+        <h3>Every Other Plan</h3>
+        <ul>
+          <li>Same chart for everyone. It doesn't fit your body, food or life.</li>
+          <li>You get the chart. Then you're on your own. When you slip, you slowly stop.</li>
+          <li>Diet food. Extra cooking. Extra effort. Soon, it becomes too hard to follow.</li>
+          <li>One bad day becomes another failed diet.</li>
+          <li>The chart ends. The confusion comes back. "What should I eat now?"</li>
+          <li>You blame yourself. "Maybe I just can't stay consistent."</li>
+          <li>Food becomes something to fear. More rules. More guilt. More starting over.</li>
+        </ul>
+      </div>
+      <div class="col us">
+        <h3>Varsha's ONP</h3>
+        <ul>
+          <li>Built around you. Your food, lifestyle, health and goals come first.</li>
+          <li>You get a coach, not just a chart. Your meals are checked and you're guided along the way.</li>
+          <li>Normal food that fits your life. No need to completely change how you eat.</li>
+          <li>Real-life support when work, travel, eating out or cravings get in the way.</li>
+          <li>You learn what works for you, so you can make better choices even on your own.</li>
+          <li>You build consistency. The goal is a diet you can actually live with.</li>
+          <li>Food becomes easier. Eat better without fighting food every day.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="center" style="margin-top:36px"><a class="btn" href="#book">Book My Consultation →</a></div>
+  </div>
+</section>
+
+<section class="alt" id="how">
+  <div class="wrap">
+    <div class="center">
+      <div class="eyebrow">How It Works</div>
+      <h2>Here's What Happens After You Start</h2>
+    </div>
+    <div class="steps" style="margin-top:40px">
+      <div class="step reveal"><h3>We Get to Know You</h3><p>We learn your food, routine, lifestyle, health history and goals.</p><span class="so">So your plan starts with you, not a template.</span></div>
+      <div class="step reveal"><h3>We Look at Your Reports</h3><p>We review your available blood reports along with everything you've told us.</p><span class="so">So we know what your nutrition needs to focus on.</span></div>
+      <div class="step reveal"><h3>We Build Your Plan</h3><p>A nutrition plan around your goals, your food and your everyday life.</p><span class="so">So you can follow it without turning your life upside down.</span></div>
+      <div class="step reveal"><h3>We Walk You Through It</h3><p>Your coach explains your plan and answers your questions.</p><span class="so">So you know what to eat and what to do next.</span></div>
+      <div class="step reveal"><h3>We Stay With You</h3><p>You share your meals. Your coach reviews them, gives feedback and keeps you on track.</p><span class="so">So you don't have to figure it out alone.</span></div>
+      <div class="step reveal"><h3>Control Comes Back to You</h3><p>Your reports change because you fixed the real cause through food and lifestyle.</p><span class="so">Not just for a month. For life.</span></div>
+    </div>
+    <div class="center" style="margin-top:36px"><a class="btn" href="#book">Book My Consultation →</a></div>
+  </div>
+</section>
+
+<section id="varsha">
+  <div class="wrap meet">
+    <div>
+      <div class="portrait reveal">
+        <div class="plate"><b>Varsha Easwaran</b><span>MSc Clinical Nutrition · BSc Food Science</span><span>"Nutrition should fit your life, not make your life harder."</span></div>
+      </div>
+    </div>
+    <div>
+      <h2>Meet the Person Behind Your Plan</h2>
+      <p>"I don't believe in giving everyone the same diet. Your health, food, lifestyle and goals are different. Your nutrition should be too."</p>
+      <div class="creds">
+        <div class="cred reveal"><span class="cred-fig">10<span class="plus">+</span></span><div class="cred-body"><b>Years of experience</b><p>Helping people build practical nutrition around their health and lifestyle.</p></div></div>
+        <div class="cred reveal"><span class="cred-fig">4,000<span class="plus">+</span></span><div class="cred-body"><b>People guided</b><p>Across weight management, diabetes, PCOS, thyroid, gut and broader health goals.</p></div></div>
+        <div class="cred reveal"><span class="cred-fig cred-fig--text">MMA</span><div class="cred-body"><b>International team coach</b><p>Nutrition coach to an international MMA team.</p></div></div>
+        <div class="cred reveal"><span class="cred-fig cred-fig--icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="30" height="30" fill="currentColor"><path d="M12 2l2.9 6.26L22 9.27l-5 4.73L18.18 21 12 17.27 5.82 21 7 14 2 9.27l7.1-1.01z"/></svg></span><div class="cred-body"><b>Fully personalized</b><p>Health, food preferences, lifestyle, activity and goals, all considered before your protocol is built.</p></div></div>
+      </div>
+      <p style="color:var(--ink-soft)">The goal isn't to make you follow a diet forever. It's to help you learn how to eat better for life.</p>
+      <a class="btn" href="#book">Book My Consultation →</a>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <div class="center">
+      <h2>Don't Take Our Word For It. Hear It From Them.</h2>
+    </div>
+    <div class="quotes" style="margin-top:40px">
+      <div class="card reveal"><span class="tag">Busy Professional</span><p>"I don't have time for complicated diets, and I didn't need one."</p></div>
+      <div class="card reveal"><span class="tag">Always Travelling</span><p>"I can still follow my plan while travelling."</p></div>
+      <div class="card reveal"><span class="tag">Eating Out</span><p>"I didn't have to stop eating outside."</p></div>
+      <div class="card reveal"><span class="tag">Can't Stay Consistent</span><p>"Someone actually helps me get back on track."</p></div>
+      <div class="card reveal"><span class="tag">Multiple Health Concerns</span><p>"They looked at the whole picture, not just my weight."</p></div>
+      <div class="card reveal"><span class="tag">Food Intolerances / Gut</span><p>"My food was adapted to what my body could handle."</p></div>
+      <div class="card reveal"><span class="tag">Hates Restrictive Diets</span><p>"I can eat normal food without feeling deprived."</p></div>
+      <div class="card reveal"><span class="tag">Long-Term Sustainability</span><p>"I learned how to make this part of my life."</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="chat-band" id="chat">
+  <div class="wrap">
+    <div>
+      <h2>Not Ready for a Call? Just Say Hi on Chat.</h2>
+      <p style="max-width:34em">Tell us what you're dealing with: weight, reports, PCOS, gut issues or plain inconsistency. A real person from Varsha's team replies, understands your situation and tells you honestly whether ONP fits.</p>
+      <a class="chat-cta" href="https://wa.me/919840521650" target="_blank" rel="noopener">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 6.1 1.6h.1c6.6 0 12-5.4 12-12S22.6 3 16 3zm5.9 17c-.3.8-1.7 1.6-2.3 1.6-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.5-1.5-5.8-5-6-5.3-.2-.2-1.4-1.9-1.4-3.6s.9-2.6 1.2-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6.3.8 1 2.6 1.1 2.8.1.2.2.4 0 .7-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.3 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9.4.2.6.1.8-.1.2-.2 1-1.1 1.2-1.5.3-.4.5-.3.9-.2.4.1 2.1 1 2.5 1.2.4.2.6.3.7.5.1.1.1.8-.2 1.6z"/></svg>
+        Chat on WhatsApp
+      </a>
+      <div class="chat-channels">
+        <span class="chip">Replies Mon-Sat, 9am-5pm IST</span>
+        <span class="chip">No spam, no pushy follow-ups</span>
+        <span class="chip">Instagram DM also works</span>
+      </div>
+    </div>
+    <div class="chat-mock reveal" aria-hidden="true">
+      <div class="bubble out">Hi! I keep losing and regaining the same 5 kg. My thyroid reports are also slightly off 😕</div>
+      <div class="bubble in">That's really common, and fixable. Have you done a recent blood panel, or should we guide you on what to check first?</div>
+      <div class="bubble out">I have reports from last month.</div>
+      <div class="bubble in">Perfect. Share them here and tell us a bit about your routine. We'll tell you exactly where to start. 🌱</div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap">
+    <div class="center">
+      <h2>Still Have Questions?</h2>
+    </div>
+    <div class="faq" style="margin-top:32px">
+      <div class="faq-col">
+        <details><summary>I haven't taken a blood test. What should I do?</summary><p>That's okay. Tell us about your health, history and goals. We'll guide you on what you need before we begin.</p></details>
+        <details><summary>I already have my blood reports. Do I need to take them again?</summary><p>No. Share your existing reports with us. We'll review them and let you know if anything else is needed.</p></details>
+        <details><summary>I live outside India. Can I still join?</summary><p>Yes. Your plan is built around your food, lifestyle and routine. Coaching and support can happen remotely.</p></details>
+        <details><summary>Will my plan really be made just for me?</summary><p>Yes. Your health information, food preferences, lifestyle, activity and goals are considered before your protocol is created.</p></details>
+      </div>
+      <div class="faq-col">
+        <details><summary>What makes ONP different from a regular diet plan?</summary><p>You don't just receive a chart. We understand you first, build your plan, explain it, monitor your meals and support you along the way.</p></details>
+        <details><summary>How long will I need the program?</summary><p>Programs run from 2 to 6 months, depending on your goals and needs. We'll help you choose the right duration.</p></details>
+        <details><summary>What if I travel or eat outside often?</summary><p>That's okay. Your plan is built for real life. The team can guide you on food choices when you're travelling, eating out or dealing with a busy routine.</p></details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt book" id="book">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Book Your Consultation</div>
+      <h2>Start With a Conversation, Not a Chart.</h2>
+      <p style="color:var(--ink-soft);max-width:30em">Tell us a little about yourself and pick a time. Your first consultation is where we understand your health, food and routine, before anything is prescribed.</p>
+      <div class="book-info" style="margin-top:28px">
+        <div class="fact reveal"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div><div><b>In-clinic · Chennai</b><p>38/131, Sterling Road, 3rd Cross St, Nungambakkam. Or join online from anywhere.</p></div></div>
+        <div class="fact reveal"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.2 14.2L11 13V7h1.5v5.25l4.5 2.67-.8 1.28z"/></svg></div><div><b>Mon-Sat, 9:00am to 5:00pm IST</b><p>We'll confirm your slot on WhatsApp within a few hours.</p></div></div>
+        <div class="fact reveal"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/></svg></div><div><b>Have blood reports?</b><p>Keep them handy. We review them during your consultation. No reports yet? We'll guide you on what to check.</p></div></div>
+      </div>
+    </div>
+    <div class="form-slot">
+    <form class="form-card" id="apptForm" novalidate>
+      <div class="form-grid">
+        <div class="field">
+          <label for="f-name">Full name <em>*</em></label>
+          <input id="f-name" name="name" type="text" placeholder="Your name" required autocomplete="name">
+        </div>
+        <div class="field">
+          <label for="f-phone">Phone / WhatsApp <em>*</em></label>
+          <input id="f-phone" name="phone" type="tel" placeholder="+91 98XXX XXXXX" required autocomplete="tel" inputmode="tel">
+        </div>
+        <div class="field full">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" placeholder="you@example.com" autocomplete="email">
+        </div>
+        <div class="field full">
+          <label id="goal-label">What brings you here? <em>*</em></label>
+          <div class="goal-chips" role="group" aria-labelledby="goal-label">
+            <label><input type="radio" name="goal" value="Weight loss" required><span>Weight loss</span></label>
+            <label><input type="radio" name="goal" value="PCOS / hormonal"><span>PCOS / hormonal</span></label>
+            <label><input type="radio" name="goal" value="Thyroid"><span>Thyroid</span></label>
+            <label><input type="radio" name="goal" value="Diabetes / blood sugar"><span>Diabetes / blood sugar</span></label>
+            <label><input type="radio" name="goal" value="Gut health"><span>Gut health</span></label>
+            <label><input type="radio" name="goal" value="Chronic condition"><span>Chronic condition</span></label>
+            <label><input type="radio" name="goal" value="Health reports"><span>Health reports</span></label>
+            <label><input type="radio" name="goal" value="Consistency"><span>Consistency</span></label>
+          </div>
+        </div>
+        <div class="field full">
+          <label id="mode-label">Consultation mode</label>
+          <div class="seg" role="group" aria-labelledby="mode-label">
+            <label><input type="radio" name="mode" value="In-clinic" checked><span>In-clinic · Chennai</span></label>
+            <label><input type="radio" name="mode" value="Online"><span>Online · Video call</span></label>
+          </div>
+        </div>
+        <div class="field">
+          <label for="f-date">Preferred date</label>
+          <input id="f-date" name="date" type="date">
+        </div>
+        <div class="field">
+          <label for="f-time">Preferred time</label>
+          <select id="f-time" name="time">
+            <option value="">Any time</option>
+            <option>Morning, 9am to 12pm</option>
+            <option>Afternoon, 12pm to 3pm</option>
+            <option>Evening, 3pm to 5pm</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="f-notes">Anything we should know?</label>
+          <textarea id="f-notes" name="notes" placeholder="Your routine, recent reports, what you've already tried…"></textarea>
+        </div>
+      </div>
+      <div class="form-foot">
+        <button class="btn" type="submit">Book My Consultation →</button>
+        <p class="note">We'll only use your details to confirm this appointment. No spam, no pushy follow-ups.</p>
+      </div>
+    </form>
+    <div class="form-card form-done" id="apptDone" hidden role="status" aria-live="polite">
+      <div class="mark">✓</div>
+      <h3 id="doneTitle">Request received</h3>
+      <p id="doneMsg">Thanks! Varsha's team will confirm your slot on WhatsApp within a few hours, Mon-Sat 9am-5pm IST.</p>
+      <a class="chat-cta" href="https://wa.me/919840521650" target="_blank" rel="noopener" style="margin-top:8px">Chat on WhatsApp</a>
+    </div>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <h3>VARSHA'S ONP</h3>
+        <p>Varsha's ONP (OPC) Private Limited<br>38/131, Sterling Road, 3rd Cross St,<br>Nungambakkam, Chennai, Tamil Nadu 600034</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p><a href="tel:+919840521650">+91 98405 21650</a><br><a href="https://wa.me/919840521650">WhatsApp</a></p>
+      </div>
+      <div>
+        <h3>Connect With Us</h3>
+        <p><a href="#">Instagram</a> · <a href="#">YouTube</a> · <a href="#">Facebook</a></p>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Varsha's ONP (OPC) Private Limited. All Rights Reserved.</span>
+      <span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float" href="https://wa.me/919840521650" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg width="30" height="30" viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.6.8 5 2.3 7L4 29l7.2-2.3c1.9 1 4 1.6 6.1 1.6h.1c6.6 0 12-5.4 12-12S22.6 3 16 3zm5.9 17c-.3.8-1.7 1.6-2.3 1.6-.6.1-1.4.1-2.2-.1-.5-.2-1.2-.4-2-.8-3.5-1.5-5.8-5-6-5.3-.2-.2-1.4-1.9-1.4-3.6s.9-2.6 1.2-2.9c.3-.3.7-.4 1-.4h.7c.2 0 .5-.1.8.6.3.8 1 2.6 1.1 2.8.1.2.2.4 0 .7-.1.2-.2.4-.4.6l-.6.7c-.2.2-.4.4-.2.8.2.3 1 1.6 2.1 2.6 1.5 1.3 2.7 1.7 3.1 1.9.4.2.6.1.8-.1.2-.2 1-1.1 1.2-1.5.3-.4.5-.3.9-.2.4.1 2.1 1 2.5 1.2.4.2.6.3.7.5.1.1.1.8-.2 1.6z"/></svg>
+</a>
+
+<script>
+(function(){
+  /* reveal-on-scroll with per-group stagger */
+  function arm(){
+    document.querySelectorAll('.reveal').forEach(function(el){
+      var sibs = el.parentElement ? Array.prototype.filter.call(el.parentElement.children, function(c){return c.classList && c.classList.contains('reveal');}) : [el];
+      var idx = sibs.indexOf(el);
+      el.style.setProperty('--d', (Math.max(idx,0) % 8) * 70 + 'ms');
+    });
+  }
+  function showAll(){ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('on'); }); }
+  try{
+    if(document.visibilityState !== 'hidden' &&
+       matchMedia('(prefers-reduced-motion: no-preference)').matches && 'IntersectionObserver' in window){
+      arm();
+      var io = new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target);} });
+      },{threshold:.12, rootMargin:'0px 0px -5% 0px'});
+      document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+      /* failsafe: if observer callbacks are suppressed, reveal whatever sits in the viewport */
+      setTimeout(function(){
+        document.querySelectorAll('.reveal:not(.on)').forEach(function(el){
+          var r = el.getBoundingClientRect();
+          if(r.top < window.innerHeight && r.bottom > 0){ el.classList.add('on'); }
+        });
+      }, 2500);
+    } else {
+      showAll();
+    }
+  }catch(e){ showAll(); }
+
+  /* header elevation via sentinel (no scroll listener) */
+  try{
+    var header = document.getElementById('siteHeader');
+    var sentinel = document.getElementById('topSentinel');
+    if(header && sentinel && 'IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        header.classList.toggle('scrolled', !es[0].isIntersecting);
+      }).observe(sentinel);
+    }
+  }catch(e){}
+
+  /* appointment form */
+  var form = document.getElementById('apptForm');
+  var done = document.getElementById('apptDone');
+  if(!form || !done) return;
+  var dateInput = document.getElementById('f-date');
+  if(dateInput){ dateInput.min = new Date().toISOString().slice(0,10); }
+  form.addEventListener('submit', function(ev){
+    ev.preventDefault();
+    if(!form.reportValidity()) return;
+    var data = new FormData(form);
+    var name = (data.get('name')||'').toString().trim().split(/\s+/)[0];
+    var mode = data.get('mode');
+    var msg = document.getElementById('doneMsg');
+    if(msg) msg.textContent = 'Thanks' + (name ? ', ' + name : '') + '! We’ll confirm your ' +
+      (mode === 'Online' ? 'online consultation' : 'in-clinic consultation') +
+      ' on WhatsApp within a few hours, Mon-Sat 9am-5pm IST.';
+    form.hidden = true;
+    done.hidden = false;
+    done.scrollIntoView({behavior: matchMedia('(prefers-reduced-motion: no-preference)').matches ? 'smooth' : 'auto', block:'center'});
+  });
+})();
+</script>
+
+</body></html>
